@@ -69,3 +69,40 @@ int main() {
     
     return 0;
 }
+
+
+//2nd type 
+#include <stdio.h>
+
+// Function for binary search
+int binarySearch(int arr[], int left, int right, int target) {
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+
+        // Check if the target is at mid
+        if (arr[mid] == target)
+            return mid;
+
+        // If target is smaller, ignore the right half
+        if (arr[mid] > target)
+            right = mid - 1;
+        else
+            left = mid + 1; // Ignore the left half
+    }
+    return -1; // Target not found
+}
+
+int main() {
+    int arr[] = {2, 3, 4, 10, 15, 20, 30}; // Sorted array
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int target = 10;
+
+    int result = binarySearch(arr, 0, size - 1, target);
+
+    if (result != -1)
+        printf("Element found at index %d\n", result);
+    else
+        printf("Element not found\n");
+
+    return 0;
+}
